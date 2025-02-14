@@ -1,0 +1,20 @@
+name: Daily Instagram Auto-Post
+
+on:
+  schedule:
+    - cron: "0 9 * * *"  # हर दिन सुबह 9 बजे Run होगा
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run script
+        run: python auto_instagram_post.py
